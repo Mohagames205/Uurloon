@@ -39,9 +39,13 @@ class GivePlayerMoneyTask extends Task
     {
         if($this->player->isOnline())
         {
-            $amount = MoneyManager::getAmount($this->lvl->getLevel($this->player->getName()));
-            $this->eco->addMoney($this->player, $amount);
-            $this->player->sendMessage("§f[§bTDB-Uurloon§f] §bU heeft uw uurloon van $amount euro ontvangen!");
+            if(MoneyManager::getLimit($this->player) < MoneyManager::$dailyLimit)
+            {
+                $amount = MoneyManager::getAmount($this->lvl->getLevel($this->player->getName()));
+                $this->eco->addMoney($this->player, $amount);
+                $this->player->sendMessage("§f[§bTDB-Uurloon§f] §bU heeft uw uurloon van $amount euro ontvangen!");
+                MoneyManager::incrementLimit($this->player);
+            }
             return;
         }
 
