@@ -1,0 +1,10 @@
+---
+name: Uurloon
+version: 0.0.1
+main: mohagames\Uurloon\Main
+api: 3.14.0
+
+depend:
+  - LevelAPI
+  - EconomyAPI
+...
