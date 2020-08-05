@@ -12,7 +12,7 @@ class ResetLimitTask extends Task
     public function onRun(int $currentTick)
     {
 
-        if(date('d') !== MoneyManager::$lastPurged)
+        if(date('d') != MoneyManager::$lastPurged)
         {
             MoneyManager::$lastPurged = date('d');
             MoneyManager::resetLimit();

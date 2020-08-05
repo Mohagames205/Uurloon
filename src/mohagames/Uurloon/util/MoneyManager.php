@@ -26,7 +26,7 @@ class MoneyManager
 
     public static function isOverLimit(Player $player)
     {
-        return self::$limit[$player->getName()] > self::$dailyLimit;
+        return self::$limit[$player->getName()] >= self::$dailyLimit;
     }
 
     public static function initLimit(Player $player)

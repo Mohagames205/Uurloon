@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace mohagames\Uurloon;
 
 use mohagames\uurloon\task\GivePlayerMoneyTask;
+use mohagames\Uurloon\task\ResetLimitTask;
 use mohagames\Uurloon\util\MoneyManager;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -35,6 +36,8 @@ class Main extends PluginBase implements Listener {
         MoneyManager::$lastPurged = (int) date("d");
         MoneyManager::$dailyLimit = $config->get("daglimiet");
         $this->interval = $config->get("interval");
+
+        $this->getScheduler()->scheduleRepeatingTask(new ResetLimitTask(), 2000);
 
 
         self::$instance = $this;

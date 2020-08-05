@@ -39,7 +39,7 @@ class GivePlayerMoneyTask extends Task
     {
         if($this->player->isOnline())
         {
-            if(MoneyManager::getLimit($this->player) < MoneyManager::$dailyLimit)
+            if(!MoneyManager::isOverLimit($this->player))
             {
                 $amount = MoneyManager::getAmount($this->lvl->getLevel($this->player->getName()));
                 $this->eco->addMoney($this->player, $amount);
